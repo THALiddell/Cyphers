@@ -1,2 +1,31 @@
 # Cyphers
 Encoding and Decoding messages using various cyphers
+
+#Caesar Cypher
+alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+def caesar(cipher_direction, start_text, shift_key):
+   holder = []
+   if cipher_direction == "decode":
+       shift_key *= -1
+
+   for char in start_text:
+       if char in alphabet:
+           holder.append(alphabet[(alphabet.index(char)+shift_key)%len(alphabet)])
+       else:
+           holder.append(char)
+   holder = "".join(holder)
+   print(holder)
+
+run = True
+
+while run == True:
+    direction = input("Type 'encode' to encrypt a message. Type 'decode' to decrypt a message:\n").lower()
+    text = input("Enter your text here:\n").lower()
+    key = int(input("Enter the amount to shift by here:\n"))
+
+    caesar(direction, text, key)
+    cont = input("Do you want to continue? Y/N:\n").lower()
+    if cont == "n":
+        run = False
+        print("Thank you for using this crpytographic programme.")
